@@ -69,7 +69,7 @@
                     android:layout_marginEnd="8dp"
                     android:text="@string/picture_appicon"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +83,7 @@
                     android:layout_marginEnd="8dp"
                     android:text="@string/copyright_appicon"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +101,7 @@
                     android:paddingTop="20dp"
                     android:text="@string/programmername"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/namefirst"
@@ -110,7 +110,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="@string/programmer"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
             </TableRow>
             <TableRow>
                 <TextView
@@ -119,7 +119,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="@string/appVersion"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
                 <TextView
                     android:id="@+id/appVersion"
                     android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="@string/nodata"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
             </TableRow>
             <TableRow>
                 <TextView
@@ -136,7 +136,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="@string/infoProjectPage"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/projectpage"
@@ -145,7 +145,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="@string/projectPage"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
             </TableRow>
             <TableRow>
                 <TextView
@@ -154,7 +154,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="@string/infoSourceCodePage"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/sourcecodepage"
@@ -163,7 +163,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="@string/sourceCodePage"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
             </TableRow>
             <TableRow>
                 <TextView
@@ -172,7 +172,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="@string/appPurpose"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
                 <TextView
                     android:id="@+id/appPurpose"
                     android:layout_height="wrap_content"
@@ -180,7 +180,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="@string/appPurposeText"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
             </TableRow>
         </TableLayout>
     </ScrollView>
