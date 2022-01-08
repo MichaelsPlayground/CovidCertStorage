@@ -1,0 +1,10 @@
+dataset
+{"vn":"Erika","nn":"Mustermann","gdate":"12.08.1964","mah":"AstraZeneca","impf":"Vaxzevria","dose":"1/2","vdate":"Nein","idate":"01.04.2021","vadate":"01.04.2022","zdate":"2.6.2021, 16:24:01","sv":"RSA PKCS1.5 SHA-256"}
+
+signatur
+7RziYRtcxndfbnRPLSAPz5Qb3K7MuUQ+KhVpfBws6P0jRYRlV4Ah5nRfmnfkglCadi9fjQSiU9z2Mhs0IsKm5exlRjY156y2JcqpyWRJ/+/vFJj5G6RlBhSByORPTJQlLqQDaMtCUEt0/9kktgwWnQC2Qr8RnXgIsBp372E2gDkOVuNjt8p6jMWvyVv2oqoK8DHYQbZLNm7COseSHTFPEQDc1i0u23PZ+wnsDAVFlYfIHOy/siJU4pyLyChxj6RSczzvrO54g8MhEMr3/alONPjf217JejR+XN3GZGFYEkq7F5qwJw2fGSNrTmVd8K+YMxOOnskqg/QPkNIXlOg2ow==
+
+signaturverfahren
+RSA PKCS1.5 SHA-256
+
+

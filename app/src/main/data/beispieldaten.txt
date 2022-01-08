@@ -1,0 +1,54 @@
+beispieldaten:
+
+dataset ohne signature
+{"vn":"Erika","nn":"Mustermann","gdate":"12.08.1964","mah":"BioNTech","impf":"Comirnaty","dose":"2/2","vdate":"Ja","idate":"01.04.2021","vadate":"01.04.2022","zdate":"31.5.2021, 16:19:05","sv":"ECDSA P-256 SHA-256"}
+
+dataset mit signatur
+{"vn":"Erika","nn":"Mustermann","gdate":"12.08.1964","mah":"BioNTech","impf":"Comirnaty","dose":"2/2","vdate":"Ja","idate":"01.04.2021","vadate":"01.04.2022","zdate":"31.5.2021, 16:19:05","sv":"ECDSA P-256 SHA-256","signatur":"OH0kvwxyBD3IiAq6NQ2HdeNmpStpwPCjnqoIwvPAjOzkvaYK7K0Js2oDCgKc6U1MmX/+DobeCnd8DIZci6BBkA=="}
+
+signatur
+OH0kvwxyBD3IiAq6NQ2HdeNmpStpwPCjnqoIwvPAjOzkvaYK7K0Js2oDCgKc6U1MmX/+DobeCnd8DIZci6BBkA==
+
+Signatur: ECDSA P-256 SHA-256
+
+Private key:
+const privateKeyJwk = {
+  "crv": "P-256",
+  "d": "uA-zYEL7d-MXv8nZKsormZstlF-hI6sLMZ20qSmmOg4",
+  "ext": true,
+  "key_ops": ["sign"],
+  "kty": "EC",
+  "x": "sHyxUcig4Otuqu-ySXZs7Sf45nrGDClQxyxOoL0vn6w",
+  "y": "L35Cj5LwAdeiVjlgepu3j-6bANwszPkZX9xJQthOX_8"
+	};
+
+Public key:
+const jwkEcKeyPub = {
+	"crv": "P-256",
+	"ext": true,
+	"key_ops": ["verify"],
+	"kty": "EC",
+	"x": "sHyxUcig4Otuqu-ySXZs7Sf45nrGDClQxyxOoL0vn6w",
+	"y": "L35Cj5LwAdeiVjlgepu3j-6bANwszPkZX9xJQthOX_8"
+	}
+
+Public key (SPKI ohne Header/Footer)
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEsHyxUcig4Otuqu+ySXZs7Sf45nrGDClQxyxOoL0vn6wvfkKPkvAB16JWOWB6m7eP7psA3CzM+Rlf3ElC2E5f/w==
+
+dataset mit signatur
+{
+"vn":"Erika",
+"nn":"Mustermann",
+"gdate":"12.08.1964",
+"mah":"BioNTech",
+"impf":"Comirnaty",
+"dose":"2/2",
+"vdate":"Ja",
+"idate":"01.04.2021",
+"vadate":"01.04.2022",
+"zdate":"31.5.2021, 16:19:05",
+"sv":"ECDSA P-256 SHA-256",
+"signatur":"OH0kvwxyBD3IiAq6NQ2HdeNmpStpwPCjnqoIwvPAjOzkvaYK7K0Js2oDCgKc6U1MmX/+DobeCnd8DIZci6BBkA=="
+}
+
+

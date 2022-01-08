@@ -1,0 +1,1 @@
+{"vn":"Erika","nn":"Mustermann","gdate":"12.08.1964","mah":"BioNTech","impf":"Comirnaty","dose":"2/2","vdate":"Ja","idate":"01.04.2021","vadate":"01.04.2022","zdate":"31.5.2021, 16:19:05","sv":"ECDSA P-256 SHA-256"}

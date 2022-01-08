@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Impfstelle - Erzeugung des Impfzertifikates</title>
+	<style>
+		body {background-color: powderblue;}
+		h1 {color: blue;}
+		h2 {font-size: 200%;}
+		p {font-size: 120%;}
+		button {height: 100%; font-size: 120%;}
+		select {height: 100%; font-size: 120%;}
+		textarea {font-size: 120%;}
+		input[type="text"] {font-size: 120%; }
+		input[type="button"] {font-size: 100%; }
+		select {font-size: 120%; }
+		
+	</style>
+	<script type="text/javascript" src="qrcode.min.js"></script>	
+</head>
+<body>
+<h1>Impfstelle - Erzeugung des Impfzertifikates</h1>
+<hr>
+<table>
+	<tr>
+		<td><p>Vorname:</p></td>
+		<td><input type="text" id="vorname" name="vorname" size="50" value="Erika"></td>
+	</tr>
+	<tr>
+		<td><p>Nachname:</p></td>
+		<td><input type="text" id="nachname" name="nachname" size="50" value="Mustermann"></td>	
+	</tr>
+	<tr>
+		<td><p>Geburtsdatum:</p></td>
+		<td><input type="text" id="geburtsdatum" name="geburtsdatum" size="10" value="12.08.1964"></td>	
+	</tr>
+</table>
+<hr>
+<div id="qrcode" style="width:500px; height:500px; margin-top:15px;"></div>
+<hr>
+<table>	
+	<tr>
+		<td><p>Impfstoff Hersteller</p></td>
+		<td><select id="hersteller">
+			<option value="AstraZeneca">AstraZeneca</option>
+			<option value="BioNTech">BioNTech</option>
+			<option value="Johnson&Johnson">Johnson&Johnson</option>
+			<option value="Moderna">Moderna</option>
+		</select></td>	
+		<td><p>Impfstoff</p></td>
+		<td><select id="impfstoff">
+			<option value="Vaxzevria">Vaxzevria</option>
+			<option value="Comirnaty">Comirnaty</option>
+			<option value="Janssen">Janssen</option>
+			<option value="Moderna">Moderna</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td><p>Dosis:</p></td>
+		<td><select id="dosis">
+			<option value="1/2">1/2</option>
+			<option value="2/2">2/2</option>
+			<option value="1/1">1/1</option>
+		</select></td>	
+		<td><p>vollständige Immunisierung:</p></td>
+		<td><select id="immunisierung">
+			<option value="Nein">Nein</option>
+			<option value="Ja">Ja</option>
+		</select></td>			
+	</tr>
+	<tr>
+		<td><p>Datum der Impfung:</p></td>
+		<td><input type="text" id="impfdatum" name="impfdatum" size="10" value="01.04.2021"></td>		
+		<td><p>Immunisierung gültig bis:</p></td>
+		<td><input type="text" id="gueltigkeitsdatum" name="gueltigkeitsdatum" size="10" value="01.04.2022"></td>		
+	</tr>
+</table>
+<table>
+	<tr>
+		<td><p>Zertifikats-Zeitstempel:</p></td>
+		<td><input type="text" id="zertifikatsdatum" name="zertifikatsdatum" size="20" value="01.01.2021 12:00 Uhr" disabled></td>		
+	</tr>	
+	<tr>
+		<td><p>Signaturverfahren:</p></td>
+		<td><input type="text" id="signaturverfahren" name="signaturverfahren" size="55" value="ECDSA P-256 SHA-256" disabled></td>		
+	</tr>	
+	<tr>
+		<td><p>Datensatz:</p></td>
+		<td><textarea name="datensatz" id="datensatz" rows="7" cols="60" disabled></textarea></td>		
+	</tr>	
+	<tr>
+		<td><p>Signatur:</p></td>
+		<td><textarea name="signatur" id="signatur" rows="7" cols="60" disabled></textarea></td>		
+	</tr>		
+</table>
+<hr>
+<p>Zur Erstellung des Impfzertifikates drücken Sie bitte den "signieren" Button:</p>
+<button id="signCertificate" onclick="signCertificate()">signieren</button><br><br>
+<hr>
+<p><b>Wichtiger Hinweis: dieses Programm ist eine Demonstrationsanwendung im Rahmen eines Projektes, welche aus drei Modulen besteht:<br>
+Modul 1: Erstellung eines Impfzertifikates (dieses Programm)<br>
+Modul 2: Speicherung des Impfzertifikates in einer (Android) App beim Impfling<br>
+Modul 3: Prüfung des Impfzertifikates (z.B. in der Gastronomie oder an der Grenze)
+</b>
+<hr><p>
+<b>Lizenzen:</b><br><br>Das Programm verwendet die Bibliothek "qrcodejs" zur Erstellung des QR-Codes. Das Copyright dafür liegt beim Autor "Sangmin, Shim ", der die Bibliothek unter der MIT-Lizenz bereitstellt.
+Die Bibliothek is unter der Adresse <a href="https://github.com/davidshimjs/qrcodejs" target="_blank">https://github.com/davidshimjs/qrcodejs</a> abrufbar.
+Die MIT-Lizenz können Sie unter diesem Link abrufen: <a href="mitlicense.html" target="_blank">mitlicense.html</a>
+<br><br>
+Das Wort "QR Code" ist ein eingetragenes Warenzeichen der DENSO WAVE INCORPORATED, den Lizenztext können Sie hier aufrufen: <a href="http://www.denso-wave.com/qrcode/faqpatent-e.html" target="_blank">http://www.denso-wave.com/qrcode/faqpatent-e.html</a>
+<br><br>
+Weitergehende Informationen über das Projekt finden Sie auf der Homepage <a href="https://github.com/java-crypto/cross_platform_crypto/blob/main/docs/rsa_aes_gcm_hybrid_encryption_string.md" target="_blank">
+my webpage</a>, der vollständige Quellcode von allen Modulen ist in meinem GitHub-Archiv abrufbar: <a href="https://github.com/java-crypto/cross_platform_crypto/blob/main/docs/rsa_aes_gcm_hybrid_encryption_string.md" target="_blank">
+my webpage</a>.
+</p>
+<hr><p><b>Technischer Hinweis: dieses Program erzeugt eine Elliptische Kurven-Signatur (ECDSA P-256 SHA-256).</b></p><hr>
+</body>
+
+<SCRIPT LANGUAGE="JavaScript">
+const privateKeyJwk = {
+  "crv": "P-256",
+  "d": "uA-zYEL7d-MXv8nZKsormZstlF-hI6sLMZ20qSmmOg4",
+  "ext": true,
+  "key_ops": ["sign"],
+  "kty": "EC",
+  "x": "sHyxUcig4Otuqu-ySXZs7Sf45nrGDClQxyxOoL0vn6w",
+  "y": "L35Cj5LwAdeiVjlgepu3j-6bANwszPkZX9xJQthOX_8"
+	};
+let privateKey; // rsa private key after import
+let dataset; // json certificate
+
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+	width : 500,
+	height : 500
+});
+
+    /**
+     * Converts an ECDSA signature from P1363 to DER format
+	 * source: https://developer.token.io/sdk/esdoc/file/Post_Quantum_Cryptography.PQC_Rainbow_Signature.src/security/CryptoBrowser.js.html
+     *
+     * @param {Uint8Array} sig - P1363 signature
+     * @return {Uint8Array} DER signature
+     * @private
+     */
+    function p1363ToDer(sig) {
+        const signature = Array.from(sig, x => ('00' + x.toString(16)).slice(-2)).join('');
+        let r = signature.substr(0, signature.length / 2);
+        let s = signature.substr(signature.length / 2);
+        r = r.replace(/^(00)+/, '');
+        s = s.replace(/^(00)+/, '');
+        if ((parseInt(r, 16) & '0x80') > 0) r = `00${r}`;
+        if ((parseInt(s, 16) & '0x80') > 0) s = `00${s}`;
+        const rString = `02${(r.length / 2).toString(16).padStart(2, '0')}${r}`;
+        const sString = `02${(s.length / 2).toString(16).padStart(2, '0')}${s}`;
+        const derSig = `30${((rString.length + sString.length) / 2)
+            .toString(16).padStart(2, '0')}${rString}${sString}`;
+        return new Uint8Array(derSig.match(/[\da-f]{2}/gi).map(h => parseInt(h, 16)));
+    }
+
+function signCertificate(){
+	// step 1 build dataset
+	dataset = buildDataset();
+	document.getElementById('datensatz').value = dataset;
+	// now sign the dataset but first import private key
+	importPrivateKey();
+}
+
+// step 2 import the private key
+function importPrivateKey() {
+	//var pem = document.getElementById("privatekey-value").value;
+	var jwk = privateKeyJwk;
+	window.crypto.subtle.importKey(
+		"jwk",
+		jwk,
+		{
+			name: "ECDSA",
+			namedCurve: "P-256",
+		},
+		true,
+		["sign"])
+		.then(function(key){
+			privateKey = key;
+			// now step 3 sign the dataset
+			signDataset();
+		})
+	.catch(function(err){
+		console.error(err);
+	});
+}
+
+// step 3 sign the dataset
+function signDataset(){
+	const enc = new TextEncoder();
+	datasetEncoded = enc.encode(dataset);
+	//console.log(privateKey);
+	window.crypto.subtle.sign(
+		{
+			name: "ECDSA",
+			hash: {name: "SHA-256"}, //can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
+		},
+		privateKey,
+		datasetEncoded)
+	.then(function(signature){
+		let signatureBase64 = bufToB64(p1363ToDer(new Uint8Array(signature)));
+		document.getElementById('signatur').value = signatureBase64;
+		// generate qr code
+		generateQrcode();
+	})
+	.catch(function(err){
+		console.error(err);
+	});
+}
+
+// step4 generate the qr-code including signature in dataset
+function generateQrcode(){
+	let datasetSignature = buildDatasetWithSignature();
+	console.log(datasetSignature);
+	// generate qr code
+	qrcode.makeCode(datasetSignature);
+}
+
+function buildDataset() {
+	var vornameZert = document.getElementById('vorname').value;
+	var nachnameZert = document.getElementById('nachname').value;
+	var geburtsdatumZert = document.getElementById('geburtsdatum').value;
+	var select = document.getElementById("hersteller");
+	var herstellerZert = select.value;
+	select = document.getElementById("impfstoff");
+	var impfstoffZert = select.value;
+	select = document.getElementById("dosis");
+	var dosisZert = select.value;
+	select = document.getElementById("immunisierung");
+	var immunisierungZert = select.value;
+	var impfdatumZert = document.getElementById('impfdatum').value;
+	var gueltigkeitsdatumZert = document.getElementById('gueltigkeitsdatum').value;
+	var zertifikatsdatumZert = new Date().toLocaleString();
+	document.getElementById('zertifikatsdatum').value = zertifikatsdatumZert;
+	var signaturverfahrenZert = document.getElementById("signaturverfahren").value;
+	var obj = {vn:vornameZert, nn:nachnameZert, gdate:geburtsdatumZert, mah:herstellerZert, impf:impfstoffZert, 
+	dose:dosisZert, vdate:immunisierungZert, idate:impfdatumZert, vadate:gueltigkeitsdatumZert, 
+	zdate:zertifikatsdatumZert, sv:signaturverfahrenZert};
+	dataset = JSON.stringify(obj, null, 0);
+	return dataset;
+}
+
+function buildDatasetWithSignature() {
+	var vornameZert = document.getElementById('vorname').value;
+	var nachnameZert = document.getElementById('nachname').value;
+	var geburtsdatumZert = document.getElementById('geburtsdatum').value;
+	var select = document.getElementById("hersteller");
+	var herstellerZert = select.value;
+	select = document.getElementById("impfstoff");
+	var impfstoffZert = select.value;
+	select = document.getElementById("dosis");
+	var dosisZert = select.value;
+	select = document.getElementById("immunisierung");
+	var immunisierungZert = select.value;
+	var impfdatumZert = document.getElementById('impfdatum').value;
+	var gueltigkeitsdatumZert = document.getElementById('gueltigkeitsdatum').value;
+	// hier wird das fuer die signaturerstellung verwendete datum genutzt
+	var zertifikatsdatumZert = document.getElementById('zertifikatsdatum').value;
+	var signaturverfahrenZert = document.getElementById("signaturverfahren").value;
+	var signaturZert = document.getElementById("signatur").value;
+	var obj = {vn:vornameZert, nn:nachnameZert, gdate:geburtsdatumZert, mah:herstellerZert, impf:impfstoffZert, 
+	dose:dosisZert, vdate:immunisierungZert, idate:impfdatumZert, vadate:gueltigkeitsdatumZert, 
+	zdate:zertifikatsdatumZert, sv:signaturverfahrenZert, signatur:signaturZert};
+	dataset = JSON.stringify(obj, null, 0);
+	return dataset;
+}
+
+function str2ab(str) {
+	const buf = new ArrayBuffer(str.length);
+	const bufView = new Uint8Array(buf);
+	for (let i = 0, strLen = str.length; i < strLen; i++) {
+		bufView[i] = str.charCodeAt(i);
+	}
+	return buf;
+}
+
+const bufToB64 = buf =>
+	btoa(Array.prototype.map.call(buf, ch => String.fromCharCode(ch)).join(""));
+</SCRIPT>	
+</html>
