@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -22,6 +24,10 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -108,6 +114,41 @@ public class MainActivity extends AppCompatActivity {
 
         // todo SnackBar nach Erststart rot, dann download über Button im Menü, dann sollte die
         // snackbar verschwinden und durch den neuen Check ersetzt werden -> passiert noch nicht !
+
+        Button btnQrcodeShowing = findViewById(R.id.btnQrcodeShowing);
+        btnQrcodeShowing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                qrcodeToCheck = "";
+                String filename = "";
+                String filenameExtension = ".eudc";
+                // get filename from dialog
+                filename = "m1" + filenameExtension;
+                String fileContent = Storage.readFromFile(v.getContext(), filename);
+                Log.d("main activity", "file content: " + fileContent);
+
+                ImageView imageView = findViewById(R.id.imageViewQr);
+                try {
+                    Bitmap bitmap = encodeAsBitmap(fileContent);
+                    imageView.setImageBitmap(bitmap);
+                } catch (WriterException e) {
+                    e.printStackTrace();
+                }
+
+
+
+
+                /*
+                checkDscFiles(v);
+                productionModeEnabledStatic = productionModeEnabled;
+                if (dscFilesProdAvailable & dscFilesTestAvailable) {
+                    startActivity(scanQrcodeIntent);
+                } else {
+                    String message = "Bitte laden Sie zuerst\ndie Prüfdateien herunter\n(siehe unten DOWNLOAD)";
+                    alertErrorDialog(message);
+                }*/
+            }
+        });
 
         Button btnQrcodeScanning = findViewById(R.id.btnQrcodeScanning);
         btnQrcodeScanning.setOnClickListener(new View.OnClickListener() {
@@ -356,6 +397,35 @@ public class MainActivity extends AppCompatActivity {
 
     private static byte[] base64Decoding(String input) {
         return Base64.decode(input, Base64.NO_WRAP);
+    }
+
+    Bitmap encodeAsBitmap(String str) throws WriterException {
+
+        // ### should be set in the header
+        final int WHITE = 0xFFFFFFFF;
+        final int BLACK = 0xFF000000;
+        final int WIDTH = 500;
+        final int HEIGHT = 500;
+
+        BitMatrix result;
+        try {
+            result = new MultiFormatWriter().encode(str, BarcodeFormat.QR_CODE, WIDTH, HEIGHT, null);
+        } catch (IllegalArgumentException iae) {
+            // Unsupported format
+            return null;
+        }
+        int width = result.getWidth();
+        int height = result.getHeight();
+        int[] pixels = new int[width * height];
+        for (int y = 0; y < height; y++) {
+            int offset = y * width;
+            for (int x = 0; x < width; x++) {
+                pixels[offset + x] = result.get(x, y) ? BLACK : WHITE;
+            }
+        }
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+        return bitmap;
     }
 
     // download dscList- and publicKey files to internal storage

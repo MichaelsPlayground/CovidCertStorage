@@ -40,6 +40,23 @@
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <Button
+        android:id="@+id/btnQrcodeShowing"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/blue"
+        android:text="@string/btnQrcodeFromFile"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        />
+
+    <Button
         android:id="@+id/btnQrcodeScanning"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -53,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintTop_toBottomOf="@id/btnQrcodeShowing"
          />
 
     <Button
@@ -157,5 +174,18 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnSetQrcode" />
+
+    <ImageView
+        android:id="@+id/imageViewQr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/baseline_done_black_24dp"
+        tools:layout_editor_absoluteX="193dp"
+        tools:layout_editor_absoluteY="447dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnToggleProdMode"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

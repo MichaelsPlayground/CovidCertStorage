@@ -25,4 +25,5 @@
     <string name="nodata">keine Daten</string>
     <string name="appPurpose">Übersicht</string>
     <string name="appPurposeText">Die App liest den QR-Code eines Impf-, Genesungs- oder Testzertifikates ein und zeigt den Inhalt in einem Fenster an.</string>
+    <string name="btnQrcodeFromFile">show QR-Code</string>
 </resources>

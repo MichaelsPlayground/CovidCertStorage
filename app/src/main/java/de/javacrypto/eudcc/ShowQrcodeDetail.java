@@ -154,6 +154,15 @@ public class ShowQrcodeDetail extends AppCompatActivity {
         ibs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String filename = "";
+                String filenameExtension = ".eudc";
+                // get filename from dialog
+                filename = "m1" + filenameExtension;
+
+                Storage.writeToFile(v.getContext(), filename, data);
+
+
+                /* old copy to clipboard code
                 // copy to clipboard
                 // Gets a handle to the clipboard service.
                 ClipboardManager clipboard = (ClipboardManager)
@@ -161,6 +170,8 @@ public class ShowQrcodeDetail extends AppCompatActivity {
                 ClipData clip = ClipData.newPlainText("simple text", data);
                 // Set the clipboard's primary clip.
                 clipboard.setPrimaryClip(clip);
+                */
+
                 // back to main activity
                 Intent i=new Intent(ShowQrcodeDetail.this, MainActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
