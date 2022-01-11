@@ -119,6 +119,72 @@ public class MainActivity extends AppCompatActivity {
         btnQrcodeShowing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /* code for populating file dir in a spinner
+                    https://stackoverflow.com/a/58213834/8166854
+
+                To get the files as
+
+public String[] getFiles(String path) {
+
+ File directory = new File(path);
+ File[] files = directory.listFiles();
+ String arr[] = new String[files.length];
+ for (int i = 0; i < files.length; i++) {
+  fileList[i] = files[i].getName();
+ }
+}
+To show the in activity
+
+<Spinner
+    android:id="@+id/Spinner01"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+To populate
+
+public class SpinnerExample extends Activity {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        String[] arraySpinner = getFiles();
+        Spinner s = (Spinner) findViewById(R.id.Spinner01);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, arraySpinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s.setAdapter(adapter);
+    }
+}
+
+// FilenameFilter:
+Try using a FilenameFilter instead. For example:
+
+File dir = new File("/users/blah/dirname");
+File[] files = dir.listFiles(new FilenameFilter() {
+    public boolean accept(File dir, String name) {
+        return name.toLowerCase().endsWith(".txt");
+    }
+});
+
+-or-
+pdfTestDir.listFiles((dir, name) -> name.toLowerCase().endsWith(".txt"));
+
+-or-
+private File[] getNewTextFiles() {
+    return dir.listFiles(new FilenameFilter() {
+        @Override
+        public boolean accept(File dir, String name) {
+            return name.toLowerCase().endsWith(".txt");
+        }
+    });
+}
+
+                 */
+
+
+
+
                 qrcodeToCheck = "";
                 String filename = "";
                 String filenameExtension = ".eudc";
