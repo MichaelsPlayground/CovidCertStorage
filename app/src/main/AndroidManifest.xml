@@ -3,8 +3,9 @@
     package="de.javacrypto.eudcc">
 
     <uses-feature android:name="android.hardware.camera.any" />
+
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,12 +16,17 @@
         android:theme="@style/Theme.Eudcc"
         android:versionCode="1"
         android:versionName="1.0">
-        <activity android:name="de.javacrypto.eudcc.ShowQrcodeDetail" />
-        <activity android:name="de.javacrypto.eudcc.AboutActivity" />
-        <activity android:name="de.javacrypto.eudcc.ScanQrcode" />
-        <activity android:name="de.javacrypto.eudcc.MainActivity">
+        <activity
+            android:name=".SelectQrcode"
+            android:exported="false" />
+        <activity android:name=".ShowQrcodeDetail" />
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".ScanQrcode" />
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

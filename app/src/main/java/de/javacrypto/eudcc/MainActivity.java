@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
     Intent scanQrcodeIntent, aboutIntent;
     // just for testing:
-    Intent showQrcodeDetail;
+    Intent showQrcodeDetail, selectQRcode;
 
     public static String filenameSelected = ""; // filled by ShowCertificateOverview
     public static String qrcodeToCheck = ""; // filled by verifyCertificate
@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
         // todo remove
         // just for testing:
         showQrcodeDetail = new Intent(MainActivity.this, ShowQrcodeDetail.class);
+        selectQRcode = new Intent(MainActivity.this, SelectQrcode.class);
 
         // todo SnackBar nach Erststart rot, dann download über Button im Menü, dann sollte die
         // snackbar verschwinden und durch den neuen Check ersetzt werden -> passiert noch nicht !
@@ -119,6 +120,9 @@ public class MainActivity extends AppCompatActivity {
         btnQrcodeShowing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                startActivity(selectQRcode);
+
                 /* code for populating file dir in a spinner
                     https://stackoverflow.com/a/58213834/8166854
 

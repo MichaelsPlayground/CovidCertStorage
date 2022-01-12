@@ -4,11 +4,14 @@ import android.content.Context;
 import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Storage {
 
@@ -53,6 +56,28 @@ HC1:6BF+70790T9WJWG.FKY*4GO0.O1CV2 O5 N2FBBRW1*70HS8WY04AC*WIFN0AHCD8KD97TK0F90K
         return ret;
     }
 
+    static public List<String> getAllFiles(File path) {
+        List<String> fileList=new ArrayList<String>();
+        //String[] fileList;
+        //File directory = new File(path);
+        File[] files = path.listFiles();
+        String arr[] = new String[files.length];
+        for (int i = 0; i < files.length; i++) {
+            fileList.set(i, files[i].getName());
+        }
+        return fileList;
+    }
+
+    /*
+    static public File[] getNewTextFiles() {
+        return dir.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase().endsWith(".txt");
+            }
+        });
+    }
+    */
 
 
 
